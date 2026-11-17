@@ -294,3 +294,10 @@ body[data-part=day] .r-night{display:none}
   .js .reveal,.js .tale__p{opacity:1;transform:none;filter:none}
   #embers{display:none}
 }
+
+.gate__unofficial{margin-top:10px;font-size:11.5px;color:#6e1526;font-weight:800}
+.unofficial-bar{position:fixed;left:0;right:0;bottom:0;z-index:90;text-align:center;padding:5px 12px;font-size:11px;letter-spacing:.06em;line-height:1.6;
+  background:rgba(5,2,10,.92);color:#cfc4e0;border-top:1px solid rgba(201,162,74,.4)}
+.unofficial-bar a{color:var(--gold-l)}
+.footer{padding-bottom:90px}
+.footer__note strong{color:var(--gold-l)}
