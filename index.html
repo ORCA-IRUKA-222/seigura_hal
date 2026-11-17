@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>声グラハロウィーン2026 ～オシゴト着と魔女服で大集合！～</title>
+<meta name="description" content="10月24日、年に一度だけ扉が開く館へ。青木陽菜・青山なぎさ・浅見香月・薬師寺李有が、昼は“オシゴト着”、夜は“魔女服”で迎える声優グランプリ主催ハロウィーンイベント。">
+<meta property="og:title" content="声グラハロウィーン2026 ～オシゴト着と魔女服で大集合！～">
+<meta property="og:description" content="招待状は、あなたの元にも届いている。">
+<meta property="og:image" content="img/key.jpg">
+<meta name="theme-color" content="#0b0610">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Shippori+Mincho+B1:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body data-part="night">
+
+<!-- ===== GATE : 招待状 ===== -->
+<div id="gate" role="dialog" aria-modal="true" aria-label="招待状">
+  <canvas id="gate-fog"></canvas>
+  <div class="gate__letter">
+    <p class="gate__en">Invitation</p>
+    <p class="gate__lead">親愛なる、あなたへ</p>
+    <p class="gate__body">
+      十月の終わり、池袋の片隅で<br>
+      年に一度だけ、古い館の扉が開きます。<br>
+      そこに集うのは、四人の“住人”。<br>
+      昼はそれぞれの<ruby>仕事<rt>オシゴト</rt></ruby>の顔で、<br>
+      夜は、秘密の<ruby>集会<rt>サバト</rt></ruby>の顔で。
+    </p>
+    <p class="gate__body gate__body--strong">——あなたの席も、用意してあります。</p>
+    <button id="gate-open" class="seal" type="button" aria-label="扉をひらく">
+      <span class="seal__ring"></span><span class="seal__txt">開</span>
+    </button>
+    <p class="gate__hint">封蝋にふれて、扉をひらく</p>
+    <button id="gate-skip" class="gate__skip" type="button">そのまま入る</button>
+  </div>
+</div>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav__logo">声グラ<small>HALLOWEEN 2026</small></a>
+  <button class="nav__toggle" id="navToggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span></button>
+  <nav class="nav__list" id="navList">
+    <a href="#story">物語</a>
+    <a href="#residents">住人</a>
+    <a href="#nights">二つの刻</a>
+    <a href="#program">催し</a>
+    <a href="#goods">遺品</a>
+    <a href="#info" class="nav__cta">招待を受ける</a>
+  </nav>
+  <div class="nav__progress" id="progress"></div>
+</header>
+
+<canvas id="embers" aria-hidden="true"></canvas>
+
+<main id="top">
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true">
+    <div style="background-image:url(img/night-aoki.jpg)"></div>
+    <div style="background-image:url(img/night-aoyama.jpg)"></div>
+    <div style="background-image:url(img/night-asami.jpg)"></div>
+    <div style="background-image:url(img/night-yakushiji.jpg)"></div>
+  </div>
+  <div class="hero__fog"></div>
+  <div class="hero__inner">
+    <p class="hero__en reveal">Seiyu Grand Prix Presents</p>
+    <h1 class="hero__title reveal">
+      <span class="hero__title-small">声グラ</span>
+      <span class="hero__title-main">ハロウィーン</span>
+      <span class="hero__title-year">2026</span>
+    </h1>
+    <p class="hero__sub reveal">～オシゴト着と魔女服で大集合！～</p>
+    <p class="hero__catch reveal">昼は、誰かの“オシゴト”。<br>夜は、四人の魔女の集会へ。</p>
+    <div class="hero__date reveal">
+      <span class="hero__m">10</span><span class="hero__slash">/</span><span class="hero__d">24</span><span class="hero__w">SAT</span>
+    </div>
+    <p class="hero__place reveal">東京総合美容専門学校 マルチホール（池袋）</p>
+    <div id="status" class="status reveal" aria-live="polite"></div>
+    <a href="#info" class="btn btn--gold reveal">招待状を受け取る</a>
+  </div>
+  <a href="#story" class="scroll" aria-label="物語へ"><span>SCROLL</span></a>
+</section>
+
+<!-- ===== STORY ===== -->
+<section class="sec story" id="story">
+  <div class="wrap wrap--narrow">
+    <h2 class="sec__title"><span class="sec__en">Prologue</span>物語のはじまり</h2>
+    <div class="tale">
+      <p class="tale__p">その館には、<br class="sp">地図がない。</p>
+      <p class="tale__p">毎年、十月のおわり。<br>どこからともなく一通の招待状が届く。<br>差出人の欄は、いつも空白のまま。</p>
+      <p class="tale__p">扉の向こうは、<br>古い本と、蝋燭と、琥珀色のランプの匂い。<br>四人の住人が、あなたを待っている。</p>
+      <p class="tale__p tale__p--em">ただし、館には<br class="sp">二つの“刻”がある。</p>
+    </div>
+  </div>
+
+  <div class="chapters wrap">
+    <article class="chapter reveal">
+      <p class="chapter__no">第一幕</p>
+      <h3 class="chapter__ttl">昼の館　<small>― オシゴト着 ―</small></h3>
+      <p>陽のあるうち、住人たちは“憧れの仕事”の顔をしている。うたのおねえさん、パイロット、探偵、シスター。<br>けれど探偵は言う。「この館、昼のうちから何かがおかしい」と。</p>
+    </article>
+    <article class="chapter reveal">
+      <p class="chapter__no">第二幕</p>
+      <h3 class="chapter__ttl">夜の館　<small>― 魔女服 ―</small></h3>
+      <p>日が落ち、蝋燭に火が灯るころ。四人は黒衣をまとい、帽子の鍔の下で囁きあう。<br>それは、この日限りの<strong>魔女集会</strong>。昼とは、まるで別人の微笑みで。</p>
+    </article>
+    <article class="chapter reveal">
+      <p class="chapter__no">終幕</p>
+      <h3 class="chapter__ttl">あなたの役目</h3>
+      <p>物語は、客席の外では完成しない。<br>来場者参加型の企画、ハロウィーンならではのショートドラマ——<br>気づけばあなたも、この館の<strong>登場人物</strong>のひとり。</p>
+    </article>
+  </div>
+</section>
+
+<!-- ===== RESIDENTS ===== -->
+<section class="sec residents" id="residents">
+  <div class="wrap">
+    <h2 class="sec__title"><span class="sec__en">The Residents</span>館の住人たち</h2>
+    <p class="sec__lead">昼と夜、二つの顔を持つ四人。<br>刻を切り替えて、それぞれの姿をのぞいてみて。</p>
+
+    <div class="switch" role="tablist" aria-label="刻を選ぶ">
+      <button class="switch__btn" role="tab" data-part="day" aria-selected="false"><span>☼</span>昼の部<small>オシゴト着</small></button>
+      <button class="switch__btn" role="tab" data-part="night" aria-selected="true"><span>☾</span>夜の部<small>魔女服</small></button>
+    </div>
+
+    <div class="cards">
+      <article class="card" data-key="aoki">
+        <div class="card__img">
+          <img class="img-day" src="img/day-aoki.jpg" alt="青木陽菜 昼の部・うたのおねえさん" loading="lazy">
+          <img class="img-night" src="img/night-aoki.jpg" alt="青木陽菜 夜の部・魔女服" loading="lazy">
+        </div>
+        <div class="card__body">
+          <p class="card__role"><span class="r-day">うたのおねえさん</span><span class="r-night">黒羽根の魔女</span></p>
+          <h3 class="card__name">青木 陽菜<small>Hina Aoki</small></h3>
+          <p class="card__tale"><span class="r-day">明るい歌声で館じゅうを照らす、昼の灯り。</span><span class="r-night">帽子の鍔から覗く瞳は、夜の館の水先案内人。</span></p>
+        </div>
+      </article>
+      <article class="card" data-key="aoyama">
+        <div class="card__img">
+          <img class="img-day" src="img/day-aoyama.jpg" alt="青山なぎさ 昼の部・パイロット" loading="lazy">
+          <img class="img-night" src="img/night-aoyama.jpg" alt="青山なぎさ 夜の部・魔女服" loading="lazy">
+        </div>
+        <div class="card__body">
+          <p class="card__role"><span class="r-day">パイロット</span><span class="r-night">黒薔薇の魔女</span></p>
+          <h3 class="card__name">青山 なぎさ<small>Nagisa Aoyama</small></h3>
+          <p class="card__tale"><span class="r-day">凛と空を見据える、昼の館の機長。</span><span class="r-night">赤い椅子に身を預け、集会の始まりを静かに待つ。</span></p>
+        </div>
+      </article>
+      <article class="card card--feature" data-key="asami">
+        <div class="card__img">
+          <img class="img-day" src="img/day-asami.jpg" alt="浅見香月 昼の部・探偵" loading="lazy">
+          <img class="img-night" src="img/night-asami.jpg" alt="浅見香月 夜の部・魔女服" loading="lazy">
+        </div>
+        <div class="card__body">
+          <p class="card__role"><span class="r-day">探偵</span><span class="r-night">灯火の魔女</span></p>
+          <h3 class="card__name">浅見 香月<small>Kazuki Asami</small></h3>
+          <p class="card__tale"><span class="r-day">新聞を片手に、館の“違和感”を見逃さない名探偵。</span><span class="r-night">ランタンを掲げ、闇の奥へ。昼の謎の答えを知る者。</span></p>
+        </div>
+      </article>
+      <article class="card" data-key="yakushiji">
+        <div class="card__img">
+          <img class="img-day" src="img/day-yakushiji.jpg" alt="薬師寺李有 昼の部・シスター" loading="lazy">
+          <img class="img-night" src="img/night-yakushiji.jpg" alt="薬師寺李有 夜の部・魔女服" loading="lazy">
+        </div>
+        <div class="card__body">
+          <p class="card__role"><span class="r-day">シスター</span><span class="r-night">書庫の魔女</span></p>
+          <h3 class="card__name">薬師寺 李有<small>Ria Yakushiji</small></h3>
+          <p class="card__tale"><span class="r-day">差し出された手は、導きか、それとも誘いか。</span><span class="r-night">古書の迷宮に棲む、本物の魔女のような静けさ。</span></p>
+        </div>
+      </article>
+    </div>
+    <p class="note">MC：行貝 寧々　／　昼夜とも同一キャストでお届けします。<br>※役名・二つ名は、物語を楽しむための本ページ独自の演出です。</p>
+  </div>
+</section>
+
+<!-- ===== NIGHTS ===== -->
+<section class="sec nights" id="nights">
+  <div class="wrap">
+    <h2 class="sec__title"><span class="sec__en">Two Hours of the Day</span>二つの刻、二つの顔</h2>
+    <div class="nights__grid">
+      <article class="night night--day reveal">
+        <p class="night__icon">☼</p>
+        <h3>昼の部<small>オシゴト着</small></h3>
+        <p class="night__time"><b>OPEN</b> 13:00 <b>START</b> 14:00 <b>END</b> 15:30<em>予定</em></p>
+        <p>各キャストが「一度は経験してみたい」と憧れていた職業の衣装で登場。夜とはまた違う、背筋の伸びた、ちょっと照れた表情に出会える。</p>
+        <ul><li>うたのおねえさん</li><li>パイロット</li><li>探偵</li><li>シスター</li></ul>
+      </article>
+      <article class="night night--night reveal">
+        <p class="night__icon">☾</p>
+        <h3>夜の部<small>魔女服</small></h3>
+        <p class="night__time"><b>OPEN</b> 16:30 <b>START</b> 17:30 <b>END</b> 19:00<em>予定</em></p>
+        <p>衣装はキャスト自身がコーディネート。黒衣に身を包んだ四人が、この日限りの<strong>魔女集会</strong>を開く。個性がにじむ装いは、ひとりずつ必見。</p>
+        <ul><li>それぞれの“自前”魔女服</li><li>ここだけの集会</li></ul>
+      </article>
+    </div>
+    <figure class="moon reveal">
+      <img src="img/goods-key.jpg" alt="満月の下、四人の魔女" loading="lazy">
+      <figcaption>— 満月の夜、魔女たちは箒を捨てて、客席へ降りてくる。 —</figcaption>
+    </figure>
+    <p class="sec__lead sec__lead--em">昼を見たら、夜が気になる。夜を見たら、昼の秘密が知りたくなる。<br><strong>どちらも見届けた人だけが、この物語の“真相”に触れられる。</strong></p>
+  </div>
+</section>
+
+<!-- ===== PROGRAM ===== -->
+<section class="sec program" id="program">
+  <div class="wrap wrap--narrow">
+    <h2 class="sec__title"><span class="sec__en">Rituals</span>館で行われる“催し”</h2>
+    <ol class="rituals">
+      <li class="reveal"><span class="rituals__no">I</span><div><h3>バラエティパート</h3><p>ハロウィーンにちなんだ企画が盛りだくさん。衣装のままはしゃぐ四人の素顔が、きっと見られる。</p></div></li>
+      <li class="reveal"><span class="rituals__no">II</span><div><h3>来場者参加型企画</h3><p>観ているだけでは、終われない。あなたの一手が、館の夜を動かすかもしれない。</p></div></li>
+      <li class="reveal"><span class="rituals__no">III</span><div><h3>ショートドラマ</h3><p>仮装の四人が演じる、秘密の一幕。昼と夜、それぞれで紡がれる小さな物語を見届けて。</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== GOODS ===== -->
+<section class="sec goods" id="goods">
+  <div class="wrap">
+    <h2 class="sec__title"><span class="sec__en">Relics</span>館に遺された品々</h2>
+    <p class="sec__lead">この日のために撮り下ろした、ここでしか手に入らない記念の品。<br>昼の“オシゴト着”ver.と、夜の“魔女服”ver.が揃う。</p>
+    <div class="goods__grid">
+      <figure class="reveal"><img src="img/g2.jpg" alt="全身タペストリー" loading="lazy"><figcaption><b>全身タペストリー</b>全4種　各 10,000円</figcaption></figure>
+      <figure class="reveal"><img src="img/g3.jpg" alt="アクリルスタンド" loading="lazy"><figcaption><b>アクリルスタンド</b>全8種　各 2,200円</figcaption></figure>
+      <figure class="reveal"><img src="img/g4.jpg" alt="ランダム缶バッジ" loading="lazy"><figcaption><b>ランダム缶バッジ</b>全16種　1個 500円</figcaption></figure>
+      <figure class="reveal"><img src="img/g5.jpg" alt="フォトパンフレット" loading="lazy"><figcaption><b>フォトパンフレット</b>キャストインタビュー掲載　3,000円</figcaption></figure>
+    </div>
+    <p class="note">ほかにブロマイドセット（全6種・1,100円）もラインナップ。価格はすべて税込。<br>会場物販はチケット提示が必要で、購入個数制限あり。通販（インフォスクエア）は 10/24 13:00〜11/15 23:59。</p>
+  </div>
+</section>
+
+<!-- ===== INFO ===== -->
+<section class="sec info" id="info">
+  <div class="wrap wrap--narrow">
+    <h2 class="sec__title"><span class="sec__en">Invitation</span>招待状</h2>
+    <div class="paper reveal">
+      <h3 class="paper__ttl">声グラハロウィーン2026<br><small>～オシゴト着と魔女服で大集合！～</small></h3>
+      <dl class="paper__dl">
+        <div><dt>日時</dt><dd>2026年10月24日（土）<br>昼の部（オシゴト着）開場 13:00／開演 14:00／終演 15:30（予定）<br>夜の部（魔女服）開場 16:30／開演 17:30／終演 19:00（予定）</dd></div>
+        <div><dt>会場</dt><dd>東京総合美容専門学校 マルチホール<br>東京都豊島区南池袋2丁目8-7 7F-8F<br><a href="https://www.tsbs.jp/introduction/access" target="_blank" rel="noopener">アクセスを見る</a></dd></div>
+        <div><dt>出演</dt><dd>青木陽菜／青山なぎさ／浅見香月／薬師寺李有<br>MC：行貝寧々（昼夜共通）</dd></div>
+        <div><dt>チケット</dt><dd>7,000円（税込）／インフォスチケットにて<br><small>※お申込みには「インフォスチケット会員」（無料）への登録が必要です。当日券の販売はありません。</small></dd></div>
+        <div><dt>ご注意</dt><dd>フラワースタンド・楽屋花は承っておりません。プレゼントは「お手紙」のみ（会場受付のボックスへ）。</dd></div>
+      </dl>
+      <div id="ticket-area" class="paper__cta">
+        <a id="ticket-btn" class="btn btn--gold" href="https://r.funity.jp/infosticket" target="_blank" rel="noopener">インフォスチケットを見る</a>
+        <a class="btn btn--ghost" href="https://seigura.com/movie/175353/" target="_blank" rel="noopener">公式イベントページ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINALE ===== -->
+<section class="finale">
+  <div class="wrap wrap--narrow">
+    <p class="finale__lead reveal">灯りが消えても、<br>館の扉は、閉じきらない。</p>
+    <p class="finale__txt reveal">来年のハロウィーンも、きっと招待状は届く。<br>今年の“物語の続き”は、会場で、あなた自身の目で。</p>
+    <a href="#info" class="btn btn--gold reveal">もう一度、招待状を読む</a>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <p class="footer__logo">声グラ HALLOWEEN 2026</p>
+  <p class="footer__links">
+    <a href="https://seigura.com/" target="_blank" rel="noopener">声優グランプリ公式サイト</a>
+    <a href="https://seigura.com/movie/175353/" target="_blank" rel="noopener">イベントポータル</a>
+  </p>
+  <p class="footer__note">本ページは声優グランプリ『声グラハロウィーン2026』を題材にした非公式のファンメイドサイトです。掲載画像・情報の権利は各権利者（イマジカインフォス／出演者・関係各社）に帰属します。最新情報は公式サイトをご確認ください。</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
