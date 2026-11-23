@@ -14,16 +14,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;900&family=Noto+Sans+JP:wght@500;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261123l">
+<link rel="stylesheet" href="css/style.css?v=20261123m">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body data-part="night">
 
 <div class="op" id="op" role="dialog" aria-label="オープニング">
-  <div class="op__candle" aria-hidden="true"><i class="op__flame"></i><i class="op__wick"></i><i class="op__wax"></i></div>
+  <canvas class="op__cv" id="opCv" aria-hidden="true"></canvas>
   <p class="op__line op__line--1">その館には、地図がない。</p>
-  <p class="op__line op__line--2">毎年十月の終わり、<br>差出人のない一通の招待状が届く。</p>
-  <img class="op__logo" src="img/logo.jpg" alt="タイトルロゴ（ダミー画像）">
+  <p class="op__line op__line--2">毎年十月の終わり、差出人のない一通の招待状が届く。</p>
+  <img class="op__logo" id="opLogo" src="img/logo.jpg" alt="タイトルロゴ（ダミー画像）">
   <button class="op__skip" id="opSkip" type="button">SKIP ▶</button>
 </div>
 
@@ -249,6 +249,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=20261123l"></script>
+<script src="js/main.js?v=20261123m"></script>
 </body>
 </html>
