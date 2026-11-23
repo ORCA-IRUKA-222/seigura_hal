@@ -53,4 +53,32 @@
     tb.textContent = '販売終了（最新情報は公式へ）';
     tb.classList.add('is-closed'); tb.removeAttribute('href');
   }
+
+  /* opening */
+  const op = $('#op');
+  if (op) {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let seen = false;
+    try { seen = !!sessionStorage.getItem('op-seen'); } catch (_) {}
+    const timers = [];
+    const finish = () => {
+      timers.forEach(clearTimeout);
+      op.classList.add('is-done');
+      document.body.classList.remove('op-lock');
+      try { sessionStorage.setItem('op-seen', '1'); } catch (_) {}
+      setTimeout(() => op.remove(), 1400);
+    };
+    if (seen || reduce) { op.remove(); }
+    else {
+      document.body.classList.add('op-lock');
+      const step = (ms, fn) => timers.push(setTimeout(fn, ms));
+      step(200,  () => op.classList.add('is-on'));
+      step(1500, () => op.classList.add('s1'));
+      step(3700, () => { op.classList.remove('s1'); op.classList.add('s2'); });
+      step(6000, () => { op.classList.remove('s2'); op.classList.add('s3'); });
+      step(8200, finish);
+      $('#opSkip').addEventListener('click', finish);
+      addEventListener('keydown', (e) => { if (e.key === 'Escape') finish(); });
+    }
+  }
 })();
