@@ -85,24 +85,53 @@
         const w = .085 * base.s, vis = Math.min(1, (LOGO_Z - dz) / 2.2) * Math.min(1, dz / .8);
         if (vis <= 0) return;
         const fl = .85 + .15 * Math.sin(t * 9 + c.p) + .06 * Math.sin(t * 23 + c.p * 2);
-        // 床の灯りだまり
-        let g = ctx.createRadialGradient(base.x, base.y, 0, base.x, base.y, w * 9);
-        g.addColorStop(0, `rgba(255,150,60,${.22 * vis * fl})`); g.addColorStop(1, 'rgba(255,150,60,0)');
+        const h = base.y - top.y;
+        const seed = (n) => { const v = Math.sin(c.p * 12.9898 + n * 78.233) * 43758.5453; return v - Math.floor(v); };
+        // 床の灯りだまり（オレンジ・控えめ）
+        ctx.globalCompositeOperation = 'lighter';
+        let g = ctx.createRadialGradient(base.x, base.y, 0, base.x, base.y, w * 8);
+        g.addColorStop(0, `rgba(210,100,30,${.17 * vis * fl})`); g.addColorStop(1, 'rgba(210,100,30,0)');
         ctx.fillStyle = g; ctx.save(); ctx.translate(base.x, base.y); ctx.scale(1, .28); ctx.translate(-base.x, -base.y);
-        ctx.beginPath(); ctx.arc(base.x, base.y, w * 9, 0, 6.283); ctx.fill(); ctx.restore();
-        // 本体
-        ctx.fillStyle = `rgba(214,200,170,${vis})`;
-        ctx.fillRect(base.x - w / 2, top.y, w, base.y - top.y);
-        ctx.fillStyle = `rgba(120,104,80,${vis * .6})`; ctx.fillRect(base.x + w * .15, top.y, w * .35, base.y - top.y);
-        // 炎
-        const fh = w * 2.1 * fl, fw = w * .62;
-        g = ctx.createRadialGradient(base.x, top.y - fh * .35, 0, base.x, top.y - fh * .35, fh * 3.2);
-        g.addColorStop(0, `rgba(255,170,70,${.5 * vis * fl})`); g.addColorStop(1, 'rgba(255,140,40,0)');
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(base.x, top.y - fh * .35, fh * 3.2, 0, 6.283); ctx.fill();
-        ctx.fillStyle = `rgba(255,${190 + 30 * fl | 0},90,${vis})`;
-        ctx.beginPath(); ctx.ellipse(base.x + Math.sin(t * 7 + c.p) * w * .08, top.y - fh * .45, fw / 2, fh / 2, 0, 0, 6.283); ctx.fill();
-        ctx.fillStyle = `rgba(255,246,210,${vis})`;
-        ctx.beginPath(); ctx.ellipse(base.x, top.y - fh * .32, fw / 4, fh / 3.2, 0, 0, 6.283); ctx.fill();
+        ctx.beginPath(); ctx.arc(base.x, base.y, w * 8, 0, 6.283); ctx.fill(); ctx.restore();
+        ctx.globalCompositeOperation = 'source-over';
+        // 真鍮の受け皿
+        ctx.fillStyle = `rgba(74,52,26,${vis})`;
+        ctx.beginPath(); ctx.ellipse(base.x, base.y, w * 1.5, w * .3, 0, 0, 6.283); ctx.fill();
+        ctx.fillStyle = `rgba(122,88,40,${vis})`;
+        ctx.beginPath(); ctx.ellipse(base.x, base.y - w * .1, w * 1.35, w * .24, 0, 0, 6.283); ctx.fill();
+        // 蝋本体（くすんだ黄褐色・やや傾いた不揃いな上端）
+        const lean = (seed(1) - .5) * w * .25, tl = top.y + seed(2) * w * .5, tr = top.y + seed(3) * w * .5;
+        const x0 = base.x - w / 2, x1 = base.x + w / 2;
+        ctx.fillStyle = `rgba(150,118,70,${vis})`;
+        ctx.beginPath(); ctx.moveTo(x0, base.y - w * .1); ctx.lineTo(x0 + lean, tl); ctx.lineTo(x1 + lean, tr); ctx.lineTo(x1, base.y - w * .1); ctx.closePath(); ctx.fill();
+        ctx.fillStyle = `rgba(64,42,20,${vis * .55})`; ctx.fillRect(base.x + w * .12, tr, w * .38, base.y - tr - w * .1);   // 影側
+        ctx.fillStyle = `rgba(214,150,70,${vis * .3})`; ctx.fillRect(x0, tl, w * .18, base.y - tl - w * .1);               // 炎に照らされた縁
+        // 溶けて垂れた跡
+        for (let i = 0; i < 3; i++) {
+          const dx = x0 + w * (.1 + seed(4 + i) * .7), dl = h * (.12 + seed(7 + i) * .38), dw = w * (.16 + seed(10 + i) * .12);
+          ctx.fillStyle = `rgba(176,140,86,${vis * .9})`;
+          ctx.beginPath(); ctx.moveTo(dx, tl); ctx.lineTo(dx + dw, tl); ctx.lineTo(dx + dw, tl + dl); ctx.arc(dx + dw / 2, tl + dl, dw / 2, 0, Math.PI); ctx.closePath(); ctx.fill();
+        }
+        // 溜まった蝋
+        ctx.fillStyle = `rgba(110,74,34,${vis})`;
+        ctx.beginPath(); ctx.ellipse(base.x + lean / 2, (tl + tr) / 2, w * .45, w * .14, 0, 0, 6.283); ctx.fill();
+        // 芯
+        ctx.fillStyle = `rgba(20,12,8,${vis})`; ctx.fillRect(base.x + lean / 2 - w * .03, (tl + tr) / 2 - w * .3, w * .06, w * .3);
+        // 炎（オレンジ主体・白い芯は小さく）
+        const fx = base.x + lean / 2, fy = (tl + tr) / 2 - w * .3;
+        const fh = w * 2.0 * fl, fw = w * .6;
+        ctx.globalCompositeOperation = 'lighter';
+        g = ctx.createRadialGradient(fx, fy - fh * .4, 0, fx, fy - fh * .4, fh * 3);
+        g.addColorStop(0, `rgba(230,110,30,${.38 * vis * fl})`); g.addColorStop(1, 'rgba(210,90,20,0)');
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(fx, fy - fh * .4, fh * 3, 0, 6.283); ctx.fill();
+        ctx.globalCompositeOperation = 'source-over';
+        const sway = Math.sin(t * 7 + c.p) * w * .08;
+        ctx.fillStyle = `rgba(232,104,22,${vis * .95})`;
+        ctx.beginPath(); ctx.ellipse(fx + sway, fy - fh * .45, fw / 2, fh / 2, 0, 0, 6.283); ctx.fill();
+        ctx.fillStyle = `rgba(255,170,60,${vis * .95})`;
+        ctx.beginPath(); ctx.ellipse(fx + sway * .6, fy - fh * .38, fw / 3.2, fh / 3, 0, 0, 6.283); ctx.fill();
+        ctx.fillStyle = `rgba(255,214,140,${vis * .8})`;
+        ctx.beginPath(); ctx.ellipse(fx, fy - fh * .3, fw / 7, fh / 6, 0, 0, 6.283); ctx.fill();
       };
 
       const t0 = performance.now();
@@ -123,9 +152,9 @@
         ctx.fillStyle = '#050303'; ctx.fillRect(0, 0, W, H);
         // 奥へ続く廊下のうっすらした床
         const hz = H * .47, fg = ctx.createLinearGradient(0, hz, 0, H);
-        fg.addColorStop(0, 'rgba(60,28,16,0)'); fg.addColorStop(1, 'rgba(60,28,16,.35)');
+        fg.addColorStop(0, 'rgba(50,22,10,0)'); fg.addColorStop(1, 'rgba(50,22,10,.3)');
         ctx.fillStyle = fg; ctx.fillRect(0, hz, W, H - hz);
-        ctx.globalCompositeOperation = 'lighter';
+        ctx.globalCompositeOperation = 'source-over';
         const fadeIn = Math.min(1, t / 1.2);
         ctx.globalAlpha = fadeIn;
         candles.forEach(c => drawCandle(c, camZ, t));
